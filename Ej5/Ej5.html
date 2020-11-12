@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej5</title>
+</head>
+
+<body>
+    <script>
+        var cad = prompt("Introduce la operación", "");
+        /*
+        Mientras haya un número lo acumula en el mismo índice.
+        Cuando encuentre un símbolo salta al siguiente indice y lo guarda. Inmediatamente salta otra vez de indice.
+        No controlo que metan 2 símbolos seguidos, en ese caso fallará.
+        */
+        var cadSeparada = [""];
+        var k = 0;
+        for (var i = 0; i <= cad.length; i++) {
+            if (cad.charCodeAt(i) >= 48 && cad.charCodeAt(i) <= 57) {
+                cadSeparada[k] = cadSeparada[k] + cad.charAt(i);
+            } else {
+                k++;
+                cadSeparada[k] = cad.charAt(i);
+                k++;
+                cadSeparada[k] = "";
+            }
+        }
+        var num1 = cadSeparada[0];
+        var op = cadSeparada[1];
+        var num2 = cadSeparada[2];
+        var resultado = 0;
+        document.write("Resultado de: " + cad);
+        /*
+        La primera vez saco 3 índices, lo hago fuera del for.
+        Las siguientes hasta terminar saco 2, porque el primero es el resultado de la operación anterior.
+        */
+        for (var i = 3; i <= cadSeparada.length; i = i + 2) {
+            switch (op) {
+                case "+":
+                    resultado = Number.parseFloat(num1) + Number.parseFloat(num2);
+                    document.write("<br>" + num1 + "+" + num2 + "=" + resultado);
+                    num1 = resultado;
+                    break;
+                case "-":
+                    resultado = Number.parseFloat(num1) - Number.parseFloat(num2);
+                    document.write("<br>" + num1 + "-" + num2 + "=" + resultado);
+                    num1 = resultado;
+                    break;
+                case "*":
+                    resultado = Number.parseFloat(num1) * Number.parseFloat(num2);
+                    document.write("<br>" + num1 + "*" + num2 + "=" + resultado);
+                    num1 = resultado;
+                    break;
+                case "/":
+                    resultado = Number.parseFloat(num1) / Number.parseFloat(num2);
+                    document.write("<br>" + num1 + "/" + num2 + "=" + resultado);
+                    num1 = resultado;
+                    break;
+            }
+            op = cadSeparada[i];
+            num2 = cadSeparada[i + 1];
+        }
+    </script>
+</body>
+
+</html>
