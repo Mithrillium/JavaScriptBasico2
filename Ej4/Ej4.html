@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej4</title>
+</head>
+
+<body>
+    <script>
+        var esValida = false;
+        do {
+            var passw = prompt("Introduce una contraseña válida", "");
+            //Si es inferior de 10 no cuento nada y pido otra vez
+            if (passw.length < 10) {
+                alert("La contraseña tiene que tener al menos 10 carácteres");
+                esValida = false;
+            } else {
+                var i = 0;
+                var minus = 0;
+                var mayus = 0;
+                var num = 0;
+                var otros = 0;
+                //Para contar cada tipo de char de la cadena
+                for (var i = 0; i < passw.length; i++) {
+                    if (passw.charCodeAt(i) >= 97 && passw.charCodeAt(i) <= 122) {
+                        minus++;
+                    } else {
+                        if (passw.charCodeAt(i) >= 65 && passw.charCodeAt(i) <= 90) {
+                            mayus++;
+                        } else {
+                            if (passw.charCodeAt(i) >= 48 && passw.charCodeAt(i) <= 57) {
+                                num++;
+                            } else {
+                                otros++;
+                            }
+                        }
+                    }
+                }
+                //El primer if: si no hay mayúscula está mal (significaría que no llega al 33% o que directamente no hay ni min ni mayus)
+                if (mayus > 0) {
+                    //Para comprobar que los caracteres no dominantes (de mayuscula o minúscula) sean al menos el 33%
+                    if (mayus > minus) {
+                        //De paso compruebo lo demás, es un copy paste despues de la primera parte de la condición
+                        esValida = minus >= mayus * 0.33 && num >= passw.length * 0.2 && otros >= passw.length * 0.1;
+                    } else {
+                        esValida = mayus >= minus * 0.33 && num >= passw.length * 0.2 && otros >= passw.length * 0.1;
+                    }
+                }
+                if (!esValida) {
+                    alert("La contraseña NO es segura");
+                }
+            }
+        } while (!esValida);
+        alert("La contraseña ES segura");
+        /*
+        Algunas pruebas:
+            HolaHO__333    (3mayus, 3 min, 20% otros caracteres, 30% números) Funciona
+            HOLa__4444     (3 mayus, 1min, 20% otros caracteres, 40% números) Funciona
+            55555_____     (no mayus, no min, 50% otros caracteres, 50% números) No funciona, no tiene letras
+            TTTTTT_333     (6 mayus, no min, 10% otros careacteres, 30% números) No funciona, no se respeta el 33% caracteres no dominantes.
+            TTTtt55555     (3 mayus, 2 min, 0% otros caracteres, 50% números) No funciona, no tiene un mínimo de 10% de otros caracteres.
+            TTTTttt__3     (4 mayus, 3min, 20% otros caracteres, 10% números) No funciona, no tiene mínimo de números
+        */
+    </script>
+</body>
+
+</html>
