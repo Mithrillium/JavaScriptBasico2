@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej3</title>
+</head>
+
+<body>
+    <script>
+        var num = prompt("Inserte un número", "");
+        var valor = 1;
+        var v = "";
+        var vInvertida = "";
+        var i = 0;
+        while (num > 0) {
+            var espaciosV = "";
+            var espaciosVInvertida = ""
+            for (i = 1; i <= valor; i++) {
+                espaciosV = espaciosV + "&nbsp";
+            }
+            v = v + espaciosV;
+            for (i = 1; i <= num; i++) {
+                v = v + valor;
+            }
+            for (i = 1; i <= num; i++) {
+                espaciosVInvertida = espaciosVInvertida + "&nbsp";
+            }
+            vInvertida = vInvertida + espaciosVInvertida;
+            for (i = 1; i <= valor; i++) {
+                vInvertida = vInvertida + num;
+            }
+            v = v + "<br>"
+            vInvertida = vInvertida + "<br>";
+            valor++;
+            num--;
+        }
+        document.write(v);
+        document.write(vInvertida);
+    </script>
+</body>
+
+</html>
