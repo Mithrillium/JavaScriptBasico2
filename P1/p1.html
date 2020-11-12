@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="estilo.css" type="text/css">
+    <title>P1</title>
+</head>
+<body>
+    <script>
+        function convierteTabla(cadena){
+            var semiTransformada = cadena.split(";");
+            var matrizPuja = [""];
+            for(var i = 0; i < semiTransformada.length; i++){
+                matrizPuja[i] = semiTransformada[i].split(",");
+            }
+            return matrizPuja;
+        }
+        //No se si esta es la forma de hacerlo. Si es una aberración coméntamelo please.
+        function imprimeHTML(matriz){
+            tabla = "<table><tr><th>Pujador</th><th>Cantidad</th>"
+            for(var i = 0; i < matriz.length; i++){
+                tabla=tabla + "<tr>";
+                for(var k = 0; k < matriz[i].length; k++){
+                   tabla = tabla + "<td>"+matriz[i][k]+"</td>";
+                }
+                tabla=tabla + "</tr>";
+            }
+            tabla= tabla + "</table>";
+            return tabla;
+        }
+        cad = prompt("Datos de la tabla","");
+        //SI QUIERES probar el ejemplo que no diste en el enunciado, descomenta siguiente linea y comenta la anterior
+        //var cad = "Cuadro Velazquez,6000;Cabeza de Elefante,9000;Silla del Rey,4500;Pipa de indio,450";
+        var matriz = convierteTabla(cad);
+        document.write("DESORDENADA: <br>");
+        document.write(imprimeHTML(matriz));
+        document.write("ORDENADA POR NOMBRE: <br>");
+        document.write(imprimeHTML(matriz.sort()));
+        document.write("ORDENADA POR PUJA: <br>");
+        document.write(imprimeHTML(matriz.sort((a, b) => b[1] - a[1])));
+        /*
+        El .sort básico me vale para ordenar las cadenas-por nombre.
+        El .sort((a, b)=> b[1] - a[1]) es como crear una funcion 'compare' que devuelva: return b[1] - a[1] 
+        */
+    </script>
+</body>
+</html>
