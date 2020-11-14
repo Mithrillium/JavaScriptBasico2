@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css" type="text/css">
+    <title>P3</title>
+</head>
+
+<body>
+    <script>
+        function creaMatriz(minimo, maximo) {
+            var indice = 0;
+            var matriz = new Array();
+            for (i = minimo; i <= maximo; i++) {
+                var arrayIntermedio = new Array(i, Math.round(i * 2.2138 * 100) / 100, Math.round(i * 1.2452 * 100) / 100);
+                matriz[indice] = arrayIntermedio;
+                indice++;
+            }
+            return matriz;
+        }
+        function imprimeHTML(matriz) {
+            tabla = "<table><tr><th>Pulgadas</th><th>Ancho (CM)</th><th>Alto (CM)</th>"
+            for (var i = 0; i < matriz.length; i++) {
+                tabla = tabla + "<tr>";
+                for (var k = 0; k < matriz[i].length; k++) {
+                    tabla = tabla + "<td>" + matriz[i][k] + "</td>";
+                }
+                tabla = tabla + "</tr>";
+            }
+            tabla = tabla + "</table>";
+            return tabla;
+        }
+        do {
+            var pMinima = prompt("Introduce el valor mínimo en pulgadas", "");
+            pMinima = Number.parseInt(pMinima)
+        } while (isNaN(pMinima) || pMinima <= 0);
+        do {
+            var pMaxima = prompt("Introduce el valor máximo en pulgadas", "");
+            pMaxima = Number.parseInt(pMaxima)
+        } while (isNaN(pMaxima) || pMaxima < pMinima);
+        document.write(imprimeHTML(creaMatriz(pMinima, pMaxima)));
+    </script>
+</body>
+
+</html>
