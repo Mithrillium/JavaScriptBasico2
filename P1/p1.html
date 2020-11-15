@@ -10,13 +10,13 @@
     <script>
         function convierteTabla(cadena){
             var semiTransformada = cadena.split(";");
-            var matrizPuja = [""];
+            var matrizPuja = new Array();
             for(var i = 0; i < semiTransformada.length; i++){
                 matrizPuja[i] = semiTransformada[i].split(",");
             }
             return matrizPuja;
         }
-        //No se si esta es la forma de hacerlo. Si es una aberración coméntamelo please.
+        //No se si esta es la forma de escribir una tabla desde JS. Si es una aberración coméntamelo please.
         function imprimeHTML(matriz){
             tabla = "<table><tr><th>Pujador</th><th>Cantidad</th>"
             for(var i = 0; i < matriz.length; i++){
