@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej1</title>
+</head>
+<body>
+    <script>
+        do{
+            var fuente = prompt("Introduce la potencia de una fuente de señal","");
+        }while(isNaN(fuente));
+        do{
+            var ruido = prompt("Introduce la potencia del ruido de fondo","");
+        }while(isNaN(ruido));
+        alert("La relación en decibelios de los numeros introducidos es: "+ (Math.round(10*Math.log10(fuente/ruido)*100)/100));
+        //Espero que esta sea la fórmula ^^
+    </script>
+</body>
+</html>
